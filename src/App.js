@@ -41,7 +41,7 @@ class App extends Component {
   onSearch = (event,pageNo=1) => {
     let searchString = event.target.value;
     if (searchString) {
-      this.filteredList = MockData.filter(function (v, i) {
+      this.filteredList = MockData.filter( (v, i)=> {
         if (v.name.toLowerCase().includes(searchString.toLowerCase())) {
           return v
         }
