@@ -12,18 +12,18 @@ class App extends Component {
       pages: [],
     }
     this.itemPerPage = 12;
-    this.sortBy="";
-    this.searchKey="";
+    this.sortBy = "";
+    this.searchKey = "";
     this.filteredList = MockData;
   }
   componentDidMount() {
-    const sessionState=sessionStorage.getItem('state');
-    if(sessionState){
-      let state=JSON.parse(sessionState)
-      this.sortList({target:{value:state.sortBy}})
-      this.onSearch({target:{value:state.searchKey}},state.pageNo)
-    }else{
-      this.sortList({target:{value:'Title'}})
+    const sessionState = sessionStorage.getItem('state');
+    if (sessionState) {
+      let state = JSON.parse(sessionState)
+      this.sortList({ target: { value: state.sortBy } })
+      this.onSearch({ target: { value: state.searchKey } }, state.pageNo)
+    } else {
+      this.sortList({ target: { value: 'Title' } })
     }
   }
   onPageChange = (pageNo) => {
@@ -31,34 +31,32 @@ class App extends Component {
     let endIndex = pageNo * this.itemPerPage;
     let list = this.filteredList.slice(startIndex, endIndex)
     let pages = [];
-    let totalNoOfPage=Math.ceil(this.filteredList.length / this.itemPerPage);
+    let totalNoOfPage = Math.ceil(this.filteredList.length / this.itemPerPage);
     for (let i = 1; i <= totalNoOfPage; i++) {
       pages.push(i);
     }
     this.setState({ list, currentPage: pageNo, totalNoOfPage, pages });
-    sessionStorage.setItem('state',JSON.stringify({searchKey:this.searchKey,sortBy:this.sortBy,pageNo}))
+    sessionStorage.setItem('state', JSON.stringify({ searchKey: this.searchKey, sortBy: this.sortBy, pageNo }))
   }
-  onSearch = (event,pageNo=1) => {
+  onSearch = (event, pageNo = 1) => {
     let searchString = event.target.value;
     if (searchString) {
-      this.filteredList = MockData.filter( (v, i)=> {
-        if (v.name.toLowerCase().includes(searchString.toLowerCase())) {
-          return v
-        }
-      });
+      this.filteredList = MockData.filter((v, i) =>
+        v.name.toLowerCase().includes(searchString.toLowerCase())
+      );
     } else {
       this.filteredList = MockData;
     }
-    this.searchKey=event.target.value;
+    this.searchKey = event.target.value;
     this.onPageChange(pageNo);
   }
-  sortList=(event)=>{
-    if(event.target.value==='Date'){
+  sortList = (event) => {
+    if (event.target.value === 'Date') {
       this.filteredList.sort((a, b) => ((new Date(a.dateLastEdited)).getTime() > ((new Date(b.dateLastEdited)).getTime())) ? 1 : ((new Date(b.dateLastEdited)).getTime() > ((new Date(a.dateLastEdited)).getTime()) ? -1 : 0));
     } else {
       this.filteredList.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0));
     }
-    this.sortBy=event.target.value;
+    this.sortBy = event.target.value;
     this.onPageChange(1);
   }
   render() {
@@ -78,7 +76,7 @@ class App extends Component {
           </div>
         </div>
         <div className="grid-row">
-        {list.length===0 && <h3>No Result found</h3>}
+          {list.length === 0 && <h3>No Result found</h3>}
           {list.map((item, key) =>
             <div className="grid-item" key={key}>
               <div className="tiles">
@@ -93,7 +91,7 @@ class App extends Component {
         </div>
         <div className="center">
           <div className="pagination">
-            <button disabled={currentPage===1} onClick={() => this.onPageChange(currentPage - 1)}>«</button>
+            <button disabled={currentPage === 1} onClick={() => this.onPageChange(currentPage - 1)}>«</button>
             {
               pages.map((item, index) =>
                 <button
@@ -102,7 +100,7 @@ class App extends Component {
                   key={index}>{index + 1}</button>
               )
             }
-            <button disabled={currentPage===pages.length} onClick={() => this.onPageChange(currentPage + 1)}>»</button>
+            <button disabled={currentPage === pages.length} onClick={() => this.onPageChange(currentPage + 1)}>»</button>
           </div>
         </div>
       </div>
