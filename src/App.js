@@ -59,6 +59,17 @@ class App extends Component {
     this.sortBy = event.target.value;
     this.onPageChange(1);
   }
+  formatDate=(date)=> {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('-');
+  }
   render() {
     const { list, currentPage, pages } = this.state;
     return (
@@ -102,6 +113,28 @@ class App extends Component {
             }
             <button disabled={currentPage === pages.length} onClick={() => this.onPageChange(currentPage + 1)}>»</button>
           </div>
+        </div>
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th className="hide-sm" style={{width:'10%'}}>File</th>
+                <th className="hide-sm" style={{width:'15%'}}>Last Updated</th>
+              </tr>
+            </thead>
+            <tbody>
+            {list.map((item, key) =>
+              <tr key={key}>
+                <td>{item.name}</td>
+                <td  className="overflow">{item.description}</td>
+                <td  className="hide-sm"><a href={item.image} target="blank">Image</a></td>
+                <td className="hide-sm">{this.formatDate(item.dateLastEdited) }</td>
+              </tr>
+            )}
+            </tbody>
+          </table>
         </div>
       </div>
     );
