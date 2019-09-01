@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/eight-fin-test/static/css/main.71d19787.chunk.css",
+    "main.js": "/eight-fin-test/static/js/main.c9ef7ffb.chunk.js",
+    "main.js.map": "/eight-fin-test/static/js/main.c9ef7ffb.chunk.js.map",
+    "runtime~main.js": "/eight-fin-test/static/js/runtime~main.abc77f33.js",
+    "runtime~main.js.map": "/eight-fin-test/static/js/runtime~main.abc77f33.js.map",
+    "static/js/2.b5291daf.chunk.js": "/eight-fin-test/static/js/2.b5291daf.chunk.js",
+    "static/js/2.b5291daf.chunk.js.map": "/eight-fin-test/static/js/2.b5291daf.chunk.js.map",
+    "index.html": "/eight-fin-test/index.html",
+    "precache-manifest.cafc0322e340d6b2281d129fdaef9689.js": "/eight-fin-test/precache-manifest.cafc0322e340d6b2281d129fdaef9689.js",
+    "service-worker.js": "/eight-fin-test/service-worker.js",
+    "static/css/main.71d19787.chunk.css.map": "/eight-fin-test/static/css/main.71d19787.chunk.css.map"
+  }
+}
