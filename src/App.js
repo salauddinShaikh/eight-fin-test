@@ -70,7 +70,7 @@ class App extends Component {
 
     return [day, month, year].join('-');
   }
- 
+
   render() {
     const { list, currentPage, pages } = this.state;
     return (
@@ -130,7 +130,7 @@ class App extends Component {
                 <tr key={key}>
                   <td>{item.name}</td>
                   <td className="overflow hide-sm">{item.description}</td>
-                  <td className=""><img className='table-img' src={item.image} /></td>
+                  <td className=""><img alt="card" className='table-img' src={item.image} /></td>
                   <td className="hide-sm">{this.formatDate(item.dateLastEdited)}</td>
                 </tr>
               )}
